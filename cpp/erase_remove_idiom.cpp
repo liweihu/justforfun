@@ -1,8 +1,32 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
+#include <iterator>
+#include <cassert>
 
 using namespace std;
+
+void insert_sorted(vector<string> &v, const string &word){
+    const auto insert_pos(lower_bound(begin(v), end(v), word));
+    v.insert(insert_pos, word);
+}
+
+void sorted_vector(){
+    vector<string> v{"hello", "allen", "zz", "konl", "uoun"};
+
+    assert(false == is_sorted(begin(v), end(v)));
+    sort(begin(v), end(v));
+    assert(true == is_sorted(begin(v), end(v)));
+
+    insert_sorted(v, "ppoo");
+    insert_sorted(v, "bop");
+
+    for(const auto &w : v){
+        cout << w << " ";
+    }
+    cout << endl;
+}
 
 void del01(){
     vector<int> v {1,2,3,2,5,2,6,2,4,8};
@@ -70,5 +94,6 @@ void del02() {
 
 int main() {
     // del01();
-    del02();
+    // del02();
+    sorted_vector();
 }
